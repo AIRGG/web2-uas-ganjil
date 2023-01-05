@@ -23,58 +23,61 @@ if(isset($_GET['act'])) {
     <?php include('config/cssjs.php') ?>
 </head>
 <body>
-    <h1>Jadwal</h1>
-    untuk mengakses Halaman Admin silahkan login <a href="login.php">Disini</a>
-    <hr>
-    <form id="main-form" action="" method="post">
-        <input type="hidden" name="idhide" value="">
-        <input type="hidden" name="act" value="add">
-        <label>Hari</label><br>
-        <input type="text" name="hari" oninput="getData()"><br><br>
-        <label>Dosen</label><br>
-        <input type="text" name="dosen" oninput="getData()"><br><br>
-        <label>Ruang</label><br>
-        <input type="text" name="ruang" oninput="getData()"><br><br>
-        <!-- <input type="submit" value="Save"> -->
-        <input type="reset" value="Reset">
-    </form>
-    <hr>
-    <button onclick="getData()">Refresh</button>
-    <table border="1" cellpadding="5" cellspacing="0">
-        <thead>
-            <th>No</th>
-            <th>Hari</th>
-            <th>Slot Waktu</th>
-            <th>Mata Kuliah</th>
-            <th>Dosen</th>
-            <th>Ruang</th>
-            <th>Kelas</th>
-            <th>JJ</th>
-            <th>Tahun Ajaran</th>
-            <th>Semester</th>
-        </thead>
-        <tbody id="tbody-data">
-            <!-- <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>1</td>
-                <td>
-                    <a href="">Edit</a> | <a href="">Hapus</a>
-                </td>
-            </tr> -->
-        </tbody>
-    </table>
-    <br>
-    page: <span id="pagenow">1</span> of <span id="totalpage">0</span>
-    <br>
-    total: <span id="totaldatapage">1</span>
-    <br>
-    <button onclick="getData('first')"><< first</button>
-    <button onclick="getData('prev')">< prev</button>
-    <button onclick="getData('next')">next ></button>
-    <button onclick="getData('last')">>> last</button>
+    <div class="container">
+        <h1>Jadwal</h1>
+        untuk mengakses Halaman Admin silahkan login <a href="login.php">Disini</a>
+        <hr>
+        <form id="main-form" action="" method="post">
+            <input type="hidden" name="idhide" value="">
+            <input type="hidden" name="act" value="add">
+            <label>Hari</label><br>
+            <input class="form-control" type="text" name="hari" oninput="getData()"><br><br>
+            <label>Dosen</label><br>
+            <input type="text" name="dosen" oninput="getData()"><br><br>
+            <label>Ruang</label><br>
+            <input type="text" name="ruang" oninput="getData()"><br><br>
+            <!-- <input type="submit" value="Save"> -->
+            <input class="btn btn-primary" type="reset" value="Reset">
+        </form>
+        <hr>
+        <button onclick="getData()">Refresh</button>
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <th>No</th>
+                <th>Hari</th>
+                <th>Slot Waktu</th>
+                <th>Mata Kuliah</th>
+                <th>Dosen</th>
+                <th>Ruang</th>
+                <th>Kelas</th>
+                <th>JJ</th>
+                <th>Tahun Ajaran</th>
+                <th>Semester</th>
+            </thead>
+            <tbody id="tbody-data">
+                <!-- <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>
+                        <a href="">Edit</a> | <a href="">Hapus</a>
+                    </td>
+                </tr> -->
+            </tbody>
+        </table>
+        <br>
+        page: <span id="pagenow">1</span> of <span id="totalpage">0</span>
+        <br>
+        total: <span id="totaldatapage">1</span>
+        <br>
+        <button onclick="getData('first')"><< first</button>
+        <button onclick="getData('prev')">< prev</button>
+        <button onclick="getData('next')">next ></button>
+        <button onclick="getData('last')">>> last</button>
+
+    </div>
 
     <script>
         // -- PREPARE VARIABLE --\\
