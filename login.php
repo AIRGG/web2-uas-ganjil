@@ -50,18 +50,21 @@ if (isset($_POST['btn-login'])) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="bg-danger-subtle text-center"> 
+<div class="container-fluid">
     <h1>Login Form</h1>
+    <hr>
     <form action="" method="post">
         <label>Username</label><br>
         <input type="text" name="username"><br><br>
         <label>Password</label><br>
         <input type="password" name="password"><br><br>
-        <img src="captcha.php"><br>
+        <img src="captcha.php"><br><br>
         <input type="text" name="captcha" placeholder="input captcha..."><br><br>
-        <input type="submit" name="btn-login" value="Login">
-        <a href="index.php">Kembali</a>
+        <input type="submit" name="btn-login" class="btn btn-success" value="Login">
+        <a href="index.php" class="btn btn-primary">Kembali</a>
     </form>
+</div>
 </body>
 
 </html>

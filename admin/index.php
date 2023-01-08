@@ -14,6 +14,6 @@ include('cek_auth.php');
 </head>
 <body>
     <?php include('navbar.php') ?>
-    <h1>Utama</h1>
+    <img src="gambar2.jpeg">
 </body>
 </html>

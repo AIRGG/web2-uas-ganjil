@@ -22,25 +22,35 @@ if(isset($_GET['act'])) {
     <title>Jadwal</title>
     <?php include('config/cssjs.php') ?>
 </head>
-<body>
+<body class="bg-success-subtle">
+<div>
     <div class="container">
-        <h1>Jadwal</h1>
-        untuk mengakses Halaman Admin silahkan login <a href="login.php">Disini</a>
+        <h2>Jadwal</h2>
+        untuk mengakses Halaman Admin silahkan login > <a href="login.php">Disini</a>
         <hr>
         <form id="main-form" action="" method="post">
             <input type="hidden" name="idhide" value="">
             <input type="hidden" name="act" value="add">
-            <label>Hari</label><br>
-            <input class="form-control" type="text" name="hari" oninput="getData()"><br><br>
-            <label>Dosen</label><br>
-            <input type="text" name="dosen" oninput="getData()"><br><br>
-            <label>Ruang</label><br>
-            <input type="text" name="ruang" oninput="getData()"><br><br>
+            <!-- <label>Hari</label> -->
+  <div class="row">
+    <div class="col-3">
+    <label>Hari</label><br>
+    <input class="form-control" type="text" name="hari" oninput="getData()"><br><br>
+  </div>
+  <div class="col-3">
+  <label>Dosen</label><br>
+    <input class="form-control" type="text" name="dosen" oninput="getData()"><br><br>
+  </div>
+  <div class="col-3">
+    <label>Ruang</label><br>
+    <input class="form-control" type="text" name="ruang" oninput="getData()"><br><br>
+  </div>
+</div>
             <!-- <input type="submit" value="Save"> -->
             <input class="btn btn-primary" type="reset" value="Reset">
         </form>
         <hr>
-        <button onclick="getData()">Refresh</button>
+        <button onclick="getData()" class="btn btn-primary">Refresh</button><br><br>
         <table border="1" cellpadding="5" cellspacing="0">
             <thead>
                 <th>No</th>
@@ -67,15 +77,27 @@ if(isset($_GET['act'])) {
                 </tr> -->
             </tbody>
         </table>
+        <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+        <td>page</td><td>:</td>
+        <td><span id="pagenow">1</span> of <span id="totalpage">0</span></td>
+        </tr>
         <br>
-        page: <span id="pagenow">1</span> of <span id="totalpage">0</span>
+        <tr>
+        <td>total slot</td><td>:</td>
+        <td> <span id="totaldatapage">1</span>
+        </tr>
+        </table>
         <br>
-        total: <span id="totaldatapage">1</span>
-        <br>
-        <button onclick="getData('first')"><< first</button>
-        <button onclick="getData('prev')">< prev</button>
-        <button onclick="getData('next')">next ></button>
-        <button onclick="getData('last')">>> last</button>
+        <div class="row">
+            <div class="col-12">
+                <button onclick="getData('first')" class="btn btn-primary"><< first</button>
+                <button onclick="getData('prev')" class="btn btn-primary">< prev</button>
+                <div id="angka-paging" style="display: inline"></div>
+                <button onclick="getData('next')" class="btn btn-primary">next ></button>
+                <button onclick="getData('last')" class="btn btn-primary">> last</button>
+            </div>
+        </div>
 
     </div>
 
@@ -94,6 +116,7 @@ if(isset($_GET['act'])) {
         const tag_totalpage = document.querySelector('#totalpage')
         const tag_totaldatapage = document.querySelector('#totaldatapage')
         const tag_tbodyhtml = document.querySelector('#tbody-data')
+        const tag_angkapaginghtml = document.querySelector('#angka-paging')
         let pagenow = 1;
         let nomor = 1;
         let totalpage = 0;
@@ -178,8 +201,13 @@ if(isset($_GET['act'])) {
                                     <td>${v.sem}</td>
                                 </tr>`
                     })
+                    let numberpage = ''
+                    for(let i = 1; i <= parseInt(resp.data.total_page); i++) {
+                        numberpage += `<button onclick="getData('${i}')" class="btn btn-primary"> ${i} </button>`
+                    }
                     // -- [END]custom -- \\
                     tag_tbodyhtml.innerHTML = tbodyhtml.join('')
+                    tag_angkapaginghtml.innerHTML = numberpage
                     
                     // paging
                     tag_pagenow.innerHTML = pagenow
@@ -206,6 +234,13 @@ if(isset($_GET['act'])) {
             }
             if(btn == 'last') {
                 pagenow = totalpage
+            }
+
+            // -- jika number
+            const trynumber = parseInt(btn)
+            // console.log(trynumber.toString() === 'NaN')
+            if(trynumber.toString() !== 'NaN') {
+                pagenow = btn
             }
 
             // -- send value from form filter

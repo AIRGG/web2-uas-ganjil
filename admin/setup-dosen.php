@@ -13,7 +13,9 @@ include('cek_auth.php');
     <?php include('../config/cssjs-admin.php') ?>
 </head>
 <body>
+<div class="bg-warning-subtle">
     <?php include('navbar.php') ?>
+    <div class="container-fluid">
     <h2>Setup Dosen</h2>
     <form id="main-form" action="" method="post">
         <input type="hidden" name="idhide" value="">
@@ -24,24 +26,24 @@ include('cek_auth.php');
         <input required type="text" name="nama_dosen"><br><br>
         <label>Email</label><br>
         <input required type="text" name="email"><br><br>
-        <label>NoHP</label><br>
+        <label>No HP</label><br>
         <input required type="text" name="no_hp"><br><br>
         <label>Alamat</label><br>
         <textarea required name="alamat" cols="30" rows="5"></textarea><br><br>
-        <input type="submit" value="Save">
-        <input type="reset" value="Reset">
+        <input type="submit" value="Save" class="btn btn-success">
+        <input type="reset" value="Reset" class="btn btn-warning">
     </form>
     <br>
     <span id="msg"></span>
     <hr>
-    <button onclick="getData()">Refresh</button>
+    <button onclick="getData()" class="btn btn-primary">Refresh</button><br><br>
     <table border="1" cellpadding="5" cellspacing="0">
         <thead>
             <th>No</th>
             <th>NIP</th>
             <th>Nama</th>
             <th>Email</th>
-            <th>NoHP</th>
+            <th>No HP</th>
             <th>Alamat</th>
             <th>Action</th>
         </thead>
@@ -58,15 +60,29 @@ include('cek_auth.php');
             </tr> -->
         </tbody>
     </table>
-    <br>
-    page: <span id="pagenow">1</span> of <span id="totalpage">0</span>
-    <br>
-    total: <span id="totaldatapage">1</span>
-    <br>
-    <button onclick="getData('first')"><< first</button>
-    <button onclick="getData('prev')">< prev</button>
-    <button onclick="getData('next')">next ></button>
-    <button onclick="getData('last')">>> last</button>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <tr>
+        <td>page</td><td>:</td>
+        <td><span id="pagenow">1</span> of <span id="totalpage">0</span></td>
+        </tr>
+        <br>
+        <tr>
+        <td>total slot</td><td>:</td>
+        <td> <span id="totaldatapage">1</span>
+        </tr>
+        </table>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <button onclick="getData('first')" class="btn btn-primary"><< first</button>
+                <button onclick="getData('prev')" class="btn btn-primary">< prev</button>
+                <div id="angka-paging" style="display: inline"></div>
+                <button onclick="getData('next')" class="btn btn-primary">next ></button>
+                <button onclick="getData('last')" class="btn btn-primary">> last</button>
+            </div>
+        </div>
+    </div>
+    </div>
 
     <script>
         // -- PREPARE VARIABLE --\\
@@ -85,6 +101,7 @@ include('cek_auth.php');
         const tag_totalpage = document.querySelector('#totalpage')
         const tag_totaldatapage = document.querySelector('#totaldatapage')
         const tag_tbodyhtml = document.querySelector('#tbody-data')
+        const tag_angkapaginghtml = document.querySelector('#angka-paging')
         let pagenow = 1;
         let nomor = 1;
         let totalpage = 0;
@@ -156,12 +173,17 @@ include('cek_auth.php');
                                     <td>${v.nohp}</td>
                                     <td>${v.alamat}</td>
                                     <td>
-                                        <button onclick="editData(${v.id_dosen}, ${i})">Edit</button> | <button onclick="return deleteData(${v.id_dosen})">Hapus</button>
+                                        <button class="btn btn-info" onclick="editData(${v.id_dosen}, ${i})">Edit</button> | <button class="btn btn-danger" onclick="return deleteData(${v.id_dosen})">Hapus</button>
                                     </td>
                                 </tr>`
                     })
+                    let numberpage = ''
+                    for(let i = 1; i <= parseInt(resp.data.total_page); i++) {
+                        numberpage += `<button onclick="getData('${i}')" class="btn btn-primary"> ${i} </button>`
+                    }
                     // -- [END]custom -- \\
                     tag_tbodyhtml.innerHTML = tbodyhtml.join('')
+                    tag_angkapaginghtml.innerHTML = numberpage
                     
                     // paging
                     tag_pagenow.innerHTML = pagenow
@@ -188,6 +210,13 @@ include('cek_auth.php');
             }
             if(btn == 'last') {
                 pagenow = totalpage
+            }
+
+            // -- jika number
+            const trynumber = parseInt(btn)
+            // console.log(trynumber.toString() === 'NaN')
+            if(trynumber.toString() !== 'NaN') {
+                pagenow = btn
             }
 
             const data = new FormData();
