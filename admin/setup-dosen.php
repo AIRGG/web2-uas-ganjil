@@ -21,17 +21,23 @@ include('cek_auth.php');
         <input type="hidden" name="idhide" value="">
         <input type="hidden" name="act" value="add">
         <label>NIP</label><br>
-        <input required type="text" name="nip"><br><br>
+        <!-- <input required type="text" name="nip"><br><br> -->
+        <?= inputan('', 'nip', '', 'text', '', '', 'required') ?><br><br>
         <label>Nama</label><br>
-        <input required type="text" name="nama_dosen"><br><br>
+        <!-- <input required type="text" name="nama_dosen"><br><br> -->
+        <?= inputan('', 'nama_dosen', '', 'text', '', '', 'required') ?><br><br>
         <label>Email</label><br>
-        <input required type="text" name="email"><br><br>
+        <!-- <input required type="text" name="email"><br><br> -->
+        <?= inputan('', 'email', '', 'text', '', '', 'required') ?><br><br>
         <label>No HP</label><br>
-        <input required type="text" name="no_hp"><br><br>
+        <!-- <input required type="text" name="no_hp"><br><br> -->
+        <?= inputan('', 'no_hp', '', 'text', '', '', 'required') ?><br><br>
         <label>Alamat</label><br>
         <textarea required name="alamat" cols="30" rows="5"></textarea><br><br>
-        <input type="submit" value="Save" class="btn btn-success">
-        <input type="reset" value="Reset" class="btn btn-warning">
+        <?= inputan('', '', 'btn btn-success', 'submit', 'Save', '', 'required') ?>
+        <?= inputan('', '', 'btn btn-warning', 'reset', 'Reset', '', 'required') ?>
+        <!-- <input type="submit" value="Save" class="btn btn-success">
+        <input type="reset" value="Reset" class="btn btn-warning"> -->
     </form>
     <br>
     <span id="msg"></span>
@@ -200,11 +206,13 @@ include('cek_auth.php');
             }
             if(btn == 'prev') {
                 if(pagenow > 1) {
+                    pagenow = parseInt(pagenow)
                     pagenow -= 1
                 }
             }
             if(btn == 'next') {
                 if(pagenow < totalpage) {
+                    pagenow = parseInt(pagenow)
                     pagenow += 1
                 }
             }

@@ -5,12 +5,15 @@ $resp['data'] = '';
 $resp['msg'] = '';
 $resp['success'] = false;
 $resp['error'] = false;
+// print_r($resp);
+// die();
 // print_r($_GET);
 if(isset($_GET['view'])) {
     // -- FILTERING -- \\
     $fil_hari = isset($_GET['hari']) ? $_GET['hari'] : '';
     $fil_dosen = isset($_GET['dosen']) ? $_GET['dosen'] : '';
     $fil_ruang = isset($_GET['ruang']) ? $_GET['ruang'] : '';
+    $fil_kelas = isset($_GET['kelas']) ? $_GET['kelas'] : '';
 
     // $batas_page = 10;
     $page = isset($_GET['page'])?(int)$_GET['page'] : 1;
@@ -41,8 +44,12 @@ if(isset($_GET['view'])) {
         $sql_count_row .= "  AND d.nama_ruang LIKE '%$fil_ruang%' ";
         $sql_data .= "  AND d.nama_ruang LIKE '%$fil_ruang%' ";
     }
-
+    if(strlen($fil_kelas) > 0) {
+        $sql_count_row .= "  AND c.nama_kelas LIKE '%$fil_kelas%' ";
+        $sql_data .= "  AND c.nama_kelas LIKE '%$fil_kelas%' ";
+    }
     $sql_data .= " LIMIT $page_awal, $batas_page ";
+    // die($sql_data);
 
     $tempdata = $conn->query($sql_count_row);
 

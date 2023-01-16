@@ -50,19 +50,28 @@ $q_dosen = $conn->query($sql_dosen);
             <?php endforeach ?>
         </select><br><br>
         <label>Hari</label><br>
-        <input required type="text" name="hari"><br><br>
+        <!-- <input required type="text" name="hari"><br><br> -->
+        <?= inputan('', 'hari', '', 'text', '', '', 'required') ?><br><br>
         <label>Waktu</label><br>
-        <input required type="text" name="waktu"><br><br>
+        <!-- <input required type="text" name="waktu"><br><br> -->
+        <?= inputan('', 'waktu', '', 'text', '', '', 'required') ?><br><br>
         <label>Matkul</label><br>
-        <input required type="text" name="matkul"><br><br>
+        <!-- <input required type="text" name="matkul"><br><br> -->
+        <?= inputan('', 'matkul', '', 'text', '', '', 'required') ?><br><br>
         <label>JJ</label><br>
-        <input required type="text" name="jj"><br><br>
+        <!-- <input required type="text" name="jj"><br><br> -->
+        <?= inputan('', 'jj', '', 'text', '', '', 'required') ?><br><br>
         <label>Tahun Ajaran</label><br>
-        <input required type="text" name="ta"><br><br>
+        <!-- <input required type="text" name="ta"><br><br> -->
+        <?= inputan('', 'ta', '', 'text', '', '', 'required') ?><br><br>
         <label>Semester</label><br>
-        <input required type="text" name="sem"><br><br>
-        <input type="submit" value="Save" class="btn btn-success">
-        <input type="reset" value="Reset" class="btn btn-warning">
+        <!-- <input required type="text" name="sem"><br><br> -->
+        <?= inputan('', 'sem', '', 'text', '', '', 'required') ?><br><br>
+
+        <?= inputan('', '', 'btn btn-success', 'submit', 'Save', '', 'required') ?>
+        <?= inputan('', '', 'btn btn-warning', 'reset', 'Reset', '', 'required') ?>
+        <!-- <input type="submit" value="Save" class="btn btn-success">
+        <input type="reset" value="Reset" class="btn btn-warning"> -->
     </form>
     <br>
     <span id="msg"></span>
@@ -251,11 +260,13 @@ $q_dosen = $conn->query($sql_dosen);
             }
             if(btn == 'prev') {
                 if(pagenow > 1) {
+                    pagenow = parseInt(pagenow)
                     pagenow -= 1
                 }
             }
             if(btn == 'next') {
                 if(pagenow < totalpage) {
+                    pagenow = parseInt(pagenow)
                     pagenow += 1
                 }
             }

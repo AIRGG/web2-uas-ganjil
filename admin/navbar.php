@@ -24,6 +24,9 @@
           <a class="nav-link" href="matkul.php">Setup Matkul</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="upload-excel.php">Upload Excel</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="?act=logout">Logout</a>
         </li>
       </ul>

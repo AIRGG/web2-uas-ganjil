@@ -1,0 +1,33 @@
+How to use:
+1. download web2-uas.zip
+2. extract dan taruh folder "web2-uas" hasil extract ke htdocs
+3. import file "db_web2_uas.sql" ke phpmyadmin/database mysql -> dengan nama database "db_web2_uas"
+4. atur konfig terlebih dahulu pada folder config/db.php
+	- sesuaikan `host, user, password, namadb`
+5. jalankan dengan mengetikkan localhost/namafolder pada browser -> localhost/web2-uas
+
+[notes]:
+Jika captcha tidak muncul silahkan ikuti tutorial pada video berikut:
+https://www.youtube.com/watch?v=IuQMKMtMLuU
+atau bisa mencari sendiri dengan keyword "how to install gd in php xampp"
+
+==== UPDATE ====
+- tambah upload excel [DONE]
+- tambah filtering kelas di index awal [DONE]
+
+=== [PATH] ===
+http://localhost/web2-uas/index.php -> utama (admin,dosen,mahasiswa)
+
+http://localhost/web2-uas/login.php -> login (admin)
+http://localhost/web2-uas/admin/index.php -> dashboard admin (admin)
+http://localhost/web2-uas/admin/setup-dosen.php -> (admin)
+http://localhost/web2-uas/admin/setup-ruang.php -> (admin)
+http://localhost/web2-uas/admin/setup-kelas.php -> (admin)
+http://localhost/web2-uas/admin/matkul.php -> (admin)
+http://localhost/web2-uas/admin/upload-excel.php -> (admin)
+
+
+Thanks from Team 4:
+- Airlangga Yudiatama [AIRGG] -> linktr.ee/airgg
+- Nisrina Izzatul Islam [NZR!]
+- Refina Vania [REFF#]

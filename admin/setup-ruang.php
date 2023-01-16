@@ -21,11 +21,15 @@ include('cek_auth.php');
         <input type="hidden" name="idhide" value="">
         <input type="hidden" name="act" value="add">
         <label>Kode Ruang</label><br>
-        <input required type="text" name="kode_ruang"><br><br>
+        <!-- <input required type="text" name="kode_ruang"><br><br> -->
+        <?= inputan('', 'kode_ruang', '', 'text', '', '', 'required') ?><br><br>
         <label>Nama Ruang</label><br>
-        <input required type="text" name="nama_ruang"><br><br>
-        <input type="submit" value="Save" class="btn btn-success">
-        <input type="reset" value="Reset" class="btn btn-warning">
+        <!-- <input required type="text" name="nama_ruang"><br><br> -->
+        <?= inputan('', 'nama_ruang', '', 'text', '', '', 'required') ?><br><br>
+        <?= inputan('', '', 'btn btn-success', 'submit', 'Save', '', 'required') ?>
+        <?= inputan('', '', 'btn btn-warning', 'reset', 'Reset', '', 'required') ?>
+        <!-- <input type="submit" value="Save" class="btn btn-success">
+        <input type="reset" value="Reset" class="btn btn-warning"> -->
     </form>
     <br>
     <span id="msg"></span>
@@ -182,11 +186,13 @@ include('cek_auth.php');
             }
             if(btn == 'prev') {
                 if(pagenow > 1) {
+                    pagenow = parseInt(pagenow)
                     pagenow -= 1
                 }
             }
             if(btn == 'next') {
                 if(pagenow < totalpage) {
+                    pagenow = parseInt(pagenow)
                     pagenow += 1
                 }
             }

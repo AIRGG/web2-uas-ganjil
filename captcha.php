@@ -20,16 +20,17 @@
     
     //hasil kode acak disimpan di $code
     $code = acakCaptcha();
+    // die($code);
     //kode acak disimpan di dalam session agar data dapat dipassing ke halaman lain
     $_SESSION["captcha"] = $code;
 
     //membuat background
     $gbr = imagecreatetruecolor(173, 50);
-    $bgc = imagecolorallocate($gbr, 22, 86, 165);
+    $bgc = imagecolorallocate($gbr, 181, 52, 113);
     //membuat text warna 
     $fc = imagecolorallocate($gbr, 223, 230, 233);
     imagefill($gbr, 0, 0, $bgc);
-    imagestring($gbr, 10, 50, 15,  $code, $fc);
+    imagestring($gbr, 10, 65, 15,  $code, $fc);
 
     //membuat gambar
     header ("Content-type: image/PNG");
